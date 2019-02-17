@@ -8,8 +8,11 @@
     "cm-chessboard": "^2.13.9",
     "node-sass": "^4.11.0",
     "react": "^16.8.2",
+    "react-chessboardjs": "^0.5.3",
+    "react-chessboardjs-wrapper": "^0.4.2",
     "react-dom": "^16.8.2",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "reactjs-chessboard": "0.0.9"
   },
   "scripts": {
     "start": "react-scripts start",
