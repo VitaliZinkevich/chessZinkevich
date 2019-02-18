@@ -25,6 +25,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <link rel="stylesheet" href="css/chessboard-0.3.0.min.css">  
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,24 +40,10 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.js"></script>
-    <script
-    src="https://code.jquery.com/jquery-1.10.1.js"
-    integrity="sha256-663tSdtipgBgyqJXfypOwf9ocmvECGG8Zdl3q+tk+n0="
-    crossorigin="anonymous"></script>
-
-    <script src="../src/assets/chessboard.js/js/chessboard-0.1.0.js"></script>
-    <script>
-    var init = function() {
-    console.log(window)
-    //--- start example JS ---
-    var board = Chessboard('board');
-    //--- end example JS ---
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
+    <script src="./js/chessboard-0.3.0.js"></script>
+    <!--  Including jQuery, another tool chessboardjs uses:-->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     
-    }; // end init()
-    $(document).ready(init);
-    </script> -->
-
-
   </body>
 </html>

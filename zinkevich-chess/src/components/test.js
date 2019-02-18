@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Chess from 'chess.js'
 import {Chessboard} from 'cm-chessboard'
+import '../../node_modules/cm-chessboard/styles/cm-chessboard.css';
 // import ReactDOM from 'react-dom'
 
 // import Chessboard from 'react-chessboardjs-wrapper'
@@ -35,16 +36,26 @@ state={
 
 
 componentDidMount() {
-      console.log('componentDidMount')
+       console.log('componentDidMount')
       // console.log(this.refs)
       // console.log(document)
       // ReactDOM.findDOMNode(this.refs.myDiv)
-      let board = ()=>{
-        new Chessboard(document.getElementById('iam'),
-                { position: "rn2k1r1/ppp1pp1p/3p2p1/5bn1/P7/2N2B2/1PPPPP2/2BNK1RR" })
+
+   
+
+     new Chessboard(document.getElementById('iam'),
+                {position: "start",
+                sprite: {
+                  url: "./assets/images/chessboard-sprite.svg", // pieces and markers are stored as svg in the sprite
+                  grid: 40 // the sprite is tiled with one piece every 40px
               }
-      // this.setState({...this.state,upd:'yes'})
-      board()
+               
+        })
+               
+              
+      
+    
+     
 }
 
   render() {
@@ -52,7 +63,20 @@ componentDidMount() {
     // console.log(document.getElementById('board'))
     // console.log(document)
     return (
-      <div id='iam' ref='myDiv'></div>
+      <>       
+      <div id='iam' ref='myDiv' className='boarDiv'></div>
+      <svg height="140" width="140">
+      <defs>
+        <filter id="f1" x="0" y="0" width="200%" height="200%">
+          <feOffset result="offOut" in="SourceAlpha" dx="20" dy="20" />
+          <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+          <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+        </filter>
+      </defs>
+      <rect width="90" height="90" stroke="green" strokeWidth="3" fill="yellow" filter="url(#f1)" />
+      Sorry, your browser does not support inline SVG.
+    </svg></>
+     
 
 
       // <Chessboard

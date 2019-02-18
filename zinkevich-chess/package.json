@@ -12,7 +12,9 @@
     "react-chessboardjs-wrapper": "^0.4.2",
     "react-dom": "^16.8.2",
     "react-scripts": "2.1.5",
-    "reactjs-chessboard": "0.0.9"
+    "reactjs-chessboard": "0.0.9",
+    "stockfish": "^10.0.0",
+    "svg.js": "^2.7.1"
   },
   "scripts": {
     "start": "react-scripts start",
