@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
-
+// import {stockfish} from 'stockfish'
+// var stockfish = require("stockfish")
+//  console.log(stockfish)
 
 
 

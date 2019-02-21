@@ -24,9 +24,15 @@ new Chessboard(document.getElementById("board2"), {
     orientation: COLOR.black
 })
 </pre>
-<script type="module">
-    import {COLOR, Chessboard} from "../src/cm-chessboard/Chessboard.js"
+<script type="text/javascript">
+console.log('before  module')
+console.log(window)
 
+</script>
+<script type="module">
+    
+    import {COLOR,Chessboard} from "../src/cm-chessboard/Chessboard.js"
+    console.log('module')
     new Chessboard(document.getElementById("board1"), {
         position: "start",
         sprite: {url: "../assets/images/chessboard-sprite.svg"},

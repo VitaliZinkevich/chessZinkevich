@@ -8,6 +8,8 @@ import '../../node_modules/cm-chessboard/styles/cm-chessboard.css';
 // import Chessboard from 'reactjs-chessboard'
 // import Chessboard from 'react-chessboardjs'
 
+
+
 var chess = new Chess();
 while (!chess.game_over()) {
   var moves = chess.moves();
