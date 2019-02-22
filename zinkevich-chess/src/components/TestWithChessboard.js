@@ -69,11 +69,11 @@ componentDidMount (){
 
 
 render() {
-
+console.log('BOARD RENDER')
 // console.log(window)
 
     return (
-      <div id='board1' style={{width: '400px'}}>
+      <div id='board1' style={{width: '600px'}}>
         
       </div>
     )
