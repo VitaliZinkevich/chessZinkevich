@@ -1,3 +1,8 @@
+.container {
+  width: 90%;
+  max-width: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -11,6 +16,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.rotated {
+  transform: rotate(90deg); /* Equal to rotateZ(45deg) */
+}
+.btn:focus {
+  outline: none;
 }
 
 

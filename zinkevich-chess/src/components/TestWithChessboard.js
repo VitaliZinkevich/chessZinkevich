@@ -25,7 +25,7 @@ componentDidMount (){
   
   var makeRandomMove = function() {
     var possibleMoves = game.moves();
-    console.log(possibleMoves)
+    //console.log(possibleMoves)
     // game over
     if (possibleMoves.length === 0) return;
   
@@ -62,6 +62,7 @@ componentDidMount (){
     onDrop: onDrop,
     onSnapEnd: onSnapEnd
   };
+  
   board = window.ChessBoard('board1', cfg);
 }
 
@@ -73,7 +74,7 @@ console.log('BOARD RENDER')
 // console.log(window)
 
     return (
-      <div id='board1' style={{width: '600px'}}>
+      <div id='board1' style={{width: '600px'}} className={'center-block'}>
         
       </div>
     )
