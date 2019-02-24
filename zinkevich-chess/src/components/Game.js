@@ -1,4 +1,4 @@
-
+// import stockfish from "stockfish"
 
 const GAME = (options) => {
     

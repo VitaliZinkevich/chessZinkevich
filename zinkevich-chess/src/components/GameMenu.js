@@ -15,7 +15,7 @@ class GameMenu extends PureComponent {
     }
 
     newGame=()=>{
-        console.log ('new game')
+        
         let game = GAME({book: 'book.bin'})
 
         game.reset()
@@ -34,6 +34,7 @@ class GameMenu extends PureComponent {
     
 
   render() {
+      console.log(window)
   
         let gameType=['Man vs Stockfish', 'Stockfish vs Stockfish','Man vs Man' ]
         let gameTypeView = gameType.map ((el)=>{return <button 

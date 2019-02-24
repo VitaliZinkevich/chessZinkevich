@@ -637,12 +637,37 @@ function buildBoard(orientation) {
   return html;
 }
 
+// alien part
+var imgCache = {}
+function cacheImages() {
+  var pieces = ['wK', 'wQ', 'wR', 'wB', 'wN', 'wP', 'bK', 'bQ', 'bR', 'bB', 'bN', 'bP'];
+  pieces.forEach(function(piece) {
+    var img = new Image()
+    img.onload = function() {
+      imgCache[piece] = getBase64Image(img)
+    }
+    img.src = buildPieceImgSrc(piece)
+  })
+
+  function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    return dataURL;     
+  }
+}
+// end alien part
 function buildPieceImgSrc(piece) {
   if (typeof cfg.pieceTheme === 'function') {
+    console.log('buildPieceImgSrc 1 if')
     return cfg.pieceTheme(piece);
   }
 
   if (typeof cfg.pieceTheme === 'string') {
+    console.log('buildPieceImgSrc 2 if')
     return cfg.pieceTheme.replace(/{piece}/g, piece);
   }
 

@@ -17,7 +17,6 @@
     "reactjs-chessboard": "0.0.9",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
-    "stockfish": "^10.0.0",
     "svg.js": "^2.7.1"
   },
   "scripts": {
