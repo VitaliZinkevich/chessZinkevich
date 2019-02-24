@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 // import Test from './components/test'
-import TestWithChessboard from '../src/components/TestWithChessboard'
+import Chessboard from '../src/components/Chessboard'
 import GameMenu from './components/GameMenu'
 import Score from './components/Score'
 import GameButtons from './components/GameButtons'
@@ -18,7 +18,7 @@ class App extends Component {
       <div className='container'>
       <div className='row'>
       <div className='col-2'><GameMenu/></div>
-      <div className='col-8 d-flex flex-column justify-content-right align-items-center'><TestWithChessboard></TestWithChessboard>
+      <div className='col-8 d-flex flex-column justify-content-right align-items-center'><Chessboard></Chessboard>
       <div className='row'>
 
         <div className='col-8'>

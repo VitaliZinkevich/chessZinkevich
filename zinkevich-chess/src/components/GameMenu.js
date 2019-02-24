@@ -5,15 +5,26 @@ import {connect} from 'react-redux'
 //actions 
 import {userGameOptInputsAction} from '../redux/actions/gameOptActons'
 
+import {GAME} from './Game'
 class GameMenu extends PureComponent {
 
-    componentWillReceiveProps(oldP) {
+    componentDidMount() {
         // console.log('componentWillReceiveProps')
         // this.setState({},()=>{console.log('after set state')})
+        this.newGame()
     }
 
     newGame=()=>{
         console.log ('new game')
+        let game = GAME({book: 'book.bin'})
+
+        game.reset()
+        game.setTime(1, 0)
+        game.setSkillLevel(20)
+        game.setPlayerColor('white')
+        game.setDisplayScore(false)
+        game.start()
+        
     }
 
     handleInputs=(e, opt=null)=>{
@@ -43,7 +54,7 @@ class GameMenu extends PureComponent {
         {gameTypeView}
     </div>
 
-        <p>Time</p>
+        <p>Base time (min)</p>
         <input 
         disabled={this.props.gameStatus === false ? false : true}
         onChange={(e)=>{this.handleInputs(e)}} 
@@ -51,7 +62,7 @@ class GameMenu extends PureComponent {
         name='time'
         value={this.props.time}
         />
-        <p>Increment</p>
+        <p>Increment (sec)</p>
         <input 
         disabled={this.props.gameStatus === false ? false : true}
         onChange={(e)=>{this.handleInputs(e)}}  
