@@ -1,4 +1,12 @@
-// import stockfish from "stockfish"
+// import {createStore} from "redux"
+// let store = createStore({})
+// console.log(store)
+import {store} from '../index.js'
+
+import {scoreAction} from '../redux/actions/gameStatusAction'
+
+
+
 
 const GAME = (options) => {
     
@@ -32,19 +40,21 @@ const GAME = (options) => {
     function displayStatus() {
         var status = 'Engine: ';
         if(!engineStatus.engineLoaded) {
-            console.log('Engine loading...')
+           // console.log('Engine loading...')
             status += 'loading...';
         } else if(!engineStatus.engineReady) {
-            console.log('Engine loaded')
+           // console.log('Engine loaded')
             status += 'loaded...';
         } else {
-            console.log( "Engine ready")
+           // console.log( "Engine ready")
             status += 'ready.';
         }
         status += ' Book: ' + engineStatus.book;
         if(engineStatus.search) {
             status += '<br>' + engineStatus.search;
             if(engineStatus.score && displayScore) {
+                console.log(store)
+                console.log(engineStatus.score)
                 status += ' Score: ' + engineStatus.score;
             }
         }
@@ -141,7 +151,7 @@ const GAME = (options) => {
     }
 
     engine.onmessage = function(event) {
-        console.log(event.data)
+      //  console.log(event.data)
         var line = event.data;
         if(line === 'uciok') {
             engineStatus.engineLoaded = true;
@@ -159,21 +169,26 @@ const GAME = (options) => {
             }
             if(match = line.match(/^info .*\bscore (\w+) (-?\d+)/)) {
                 var score = parseInt(match[2]) * (game.turn() === 'w' ? 1 : -1);
+                
                 if(match[1] === 'cp') {
                     engineStatus.score = (score / 100.0).toFixed(2);
+                    //console.log(score)
                 } else if(match[1] === 'mate') {
-                    engineStatus.score = '#' + score;
+                    engineStatus.score = '#';
                 }
-                if(match = line.match(/\b(upper|lower)bound\b/)) {
-                    engineStatus.score = ((match[1] === 'upper') === (game.turn() === 'w') ? '<= ' : '>= ') + engineStatus.score
-                }
+                // if(match = line.match(/\b(upper|lower)bound\b/)) {
+                //     engineStatus.score = ((match[1] === 'upper') === (game.turn() === 'w') ? '<= ' : '>= ') + engineStatus.score
+                // }
+                // console.log(store)
+                store.dispatch(scoreAction (engineStatus.score))
+                //console.log(engineStatus.score)
             }
         }
         displayStatus();
     };
 
     var onDrop = function(source, target) {
-        console.log('MAN MOVE')
+      //  console.log('MAN MOVE')
         // see if the move is legal
         var move = game.move({
             from: source,
@@ -208,11 +223,11 @@ const GAME = (options) => {
         bookRequest.onload = function(event) {
             if(bookRequest.status === 200) {
                 engine.postMessage({book: bookRequest.response});
-                console.log('Book ready')
+              //  console.log('Book ready')
                 engineStatus.book = 'ready.';
                 displayStatus();
             } else {
-                console.log('Book failed')
+               // console.log('Book failed')
                 engineStatus.book = 'failed!';
                 displayStatus();
             }

@@ -34,7 +34,7 @@ class GameMenu extends PureComponent {
     
 
   render() {
-      console.log(window)
+    //  console.log(window)
   
         let gameType=['Man vs Stockfish', 'Stockfish vs Stockfish','Man vs Man' ]
         let gameTypeView = gameType.map ((el)=>{return <button 
@@ -151,7 +151,6 @@ let mapStateToProps = (state) => {
     displayScore: state.gameOpt.displayScore,
 
     gameStatus: state.gameStatus.gameStatus,
-
     }
   }
 

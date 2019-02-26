@@ -19,10 +19,15 @@ code {
 }
 
 .rotated {
-  transform: rotate(90deg); /* Equal to rotateZ(45deg) */
-}
+  transform: rotate(90deg); 
+}  
+
 .btn:focus {
   outline: none;
+}
+
+.ruler {
+  height: 60px;
 }
 
 

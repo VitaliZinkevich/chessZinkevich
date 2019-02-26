@@ -18,7 +18,7 @@ class App extends Component {
       <div className='container'>
       <div className='row'>
       <div className='col-2'><GameMenu/></div>
-      <div className='col-8 d-flex flex-column justify-content-right align-items-center'><Chessboard></Chessboard>
+      <div className='col-7 d-flex flex-column justify-content-right align-items-center'><Chessboard></Chessboard>
       <div className='row'>
 
         <div className='col-8'>
@@ -27,7 +27,7 @@ class App extends Component {
 
       </div>
       </div>
-      <div className='col-2'><Score/></div>
+      <div className='col-3'><Score/></div>
       </div>
      
       

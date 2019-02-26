@@ -12,11 +12,11 @@ export default class Chessboard extends Component {
   // https://github.com/oakmac/chessboardjs/issues/55 лечение вроде как
 
 render() {
-console.log('BOARD RENDER')
+//console.log('BOARD RENDER')
 
 
     return (
-      <div id='board1' style={{width: '600px'}} className={'center-block'}>
+      <div id='board1' style={{width: '600px', height: '600px'}} className={'center-block'}>
         
       </div>
     )

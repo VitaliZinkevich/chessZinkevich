@@ -11,7 +11,7 @@ import combinedReducer from './redux/reducers/reducer'
 // import thunk from 'redux-thunk'
 // import promise from 'redux-promise-middleware'
 // import logger from 'redux-logger'
-const store = createStore(combinedReducer, applyMiddleware(/*promise(),thunk,*/));
+let store = createStore(combinedReducer, applyMiddleware(/*promise(),thunk,*/));
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 
@@ -19,3 +19,5 @@ ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementB
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+export {store}
