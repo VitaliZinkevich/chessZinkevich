@@ -1,13 +1,7 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 
-// import {stockfish} from 'stockfish'
-// var stockfish = require("stockfish")
-//  console.log(stockfish)
-
-
-
-
-export default class Chessboard extends Component {
+class Chessboard extends Component {
   // https://github.com/oakmac/chessboardjs/issues/52 мерцают фигуры
   // https://github.com/oakmac/chessboardjs/issues/55 лечение вроде как
 
@@ -16,9 +10,21 @@ render() {
 
 
     return (
-      <div id='board1' style={{width: '600px', height: '600px'}} className={'center-block'}>
+    
+      <div 
+      id='board1' 
+      style={{width: '600px', height: '600px'}} 
+      className={this.props.gameStatus === false ? 'd-none': 'center-block'}>
         
       </div>
     )
   }
 }
+
+let mapStateToProps = (state) => {
+  return {
+  gameStatus: state.gameStatus.gameStatus,
+  }
+}
+
+export default connect(mapStateToProps)(Chessboard)

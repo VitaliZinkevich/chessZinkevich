@@ -3,11 +3,12 @@ import {USER_GAME_OPT_INPUTS} from '../actions/gameOptActons'
 
 let initState = {
     
-    gameType: 'Man vs Stockfish',
+    gameType: 'Man vs Comp',
     time: 1,
     increment: 0,
     color: 'white',
     stockfishLevel: 20,
+    stockfishLevel2: 15,
     displayScore: true,
     
 }

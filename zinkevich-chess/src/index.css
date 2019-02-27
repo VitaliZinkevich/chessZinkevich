@@ -26,10 +26,8 @@ code {
   outline: none;
 }
 
-.ruler {
-  height: 60px;
-}
-
+canvas{ 
+  border: 1px solid black; }
 
 /* .boarDiv {
  width: 600px; 

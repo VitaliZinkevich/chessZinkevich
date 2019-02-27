@@ -1,11 +1,8 @@
-// import {createStore} from "redux"
-// let store = createStore({})
-// console.log(store)
 import {store} from '../index.js'
 
 import {scoreAction} from '../redux/actions/gameStatusAction'
-
-
+import {pgnAction} from '../redux/actions/gameStatusAction'
+import {engineBookStatusAction} from '../redux/actions/gameStatusAction'
 
 
 const GAME = (options) => {
@@ -38,27 +35,20 @@ const GAME = (options) => {
     uciCmd('uci');
 
     function displayStatus() {
-        var status = 'Engine: ';
+        let statusEngine = 'Engine: ';
+        
         if(!engineStatus.engineLoaded) {
-           // console.log('Engine loading...')
-            status += 'loading...';
+           //console.log('Engine loading...')
+           statusEngine += 'loading...';
         } else if(!engineStatus.engineReady) {
-           // console.log('Engine loaded')
-            status += 'loaded...';
+           //console.log('Engine loaded')
+           statusEngine += 'loaded...';
         } else {
-           // console.log( "Engine ready")
-            status += 'ready.';
+           //console.log( "Engine ready")
+           statusEngine += 'ready.';
         }
-        status += ' Book: ' + engineStatus.book;
-        if(engineStatus.search) {
-            status += '<br>' + engineStatus.search;
-            if(engineStatus.score && displayScore) {
-                console.log(store)
-                console.log(engineStatus.score)
-                status += ' Score: ' + engineStatus.score;
-            }
-        }
-        // $('#engineStatus').html(status);
+        let statusBook = ' Book: ' + engineStatus.book;
+        store.dispatch (engineBookStatusAction(statusEngine , statusBook, engineStatus.search))
     }
 
     function displayClock(color, t) {
@@ -122,12 +112,14 @@ const GAME = (options) => {
 
     function prepareMove() {
         stopClock();
+        //console.log(game.pgn())
+        store.dispatch(pgnAction(game.pgn()))
         // $('#pgn').text(game.pgn());
         board.position(game.fen());
         updateClock();
         var turn = game.turn() === 'w' ? 'white' : 'black';
         if(!game.game_over()) {
-            if(turn != playerColor) {
+            if(turn !== playerColor) {
                 var moves = '';
                 var history = game.history({verbose: true});
                 for(var i = 0; i < history.length; ++i) {
@@ -164,10 +156,13 @@ const GAME = (options) => {
                 game.move({from: match[1], to: match[2], promotion: match[3]});
                 console.log('AI MOOVE')
                 prepareMove();
-            } else if(match = line.match(/^info .*\bdepth (\d+) .*\bnps (\d+)/)) {
+            } else {
+                match = line.match(/^info .*\bdepth (\d+) .*\bnps (\d+)/)
+                if(match) {
                 engineStatus.search = 'Depth: ' + match[1] + ' Nps: ' + match[2];
-            }
-            if(match = line.match(/^info .*\bscore (\w+) (-?\d+)/)) {
+            }}
+            match = line.match(/^info .*\bscore (\w+) (-?\d+)/)
+            if(match) {
                 var score = parseInt(match[2]) * (game.turn() === 'w' ? 1 : -1);
                 
                 if(match[1] === 'cp') {
@@ -180,7 +175,13 @@ const GAME = (options) => {
                 //     engineStatus.score = ((match[1] === 'upper') === (game.turn() === 'w') ? '<= ' : '>= ') + engineStatus.score
                 // }
                 // console.log(store)
-                store.dispatch(scoreAction (engineStatus.score))
+               
+                if (engineStatus.score === '#') {
+                  store.dispatch(scoreAction (engineStatus.score, game.turn()))
+                } else {
+                  store.dispatch(scoreAction (engineStatus.score))
+                }
+               
                 //console.log(engineStatus.score)
             }
         }
@@ -223,11 +224,11 @@ const GAME = (options) => {
         bookRequest.onload = function(event) {
             if(bookRequest.status === 200) {
                 engine.postMessage({book: bookRequest.response});
-              //  console.log('Book ready')
+             console.log('Book ready')
                 engineStatus.book = 'ready.';
                 displayStatus();
             } else {
-               // console.log('Book failed')
+               console.log('Book failed')
                 engineStatus.book = 'failed!';
                 displayStatus();
             }
@@ -238,6 +239,8 @@ const GAME = (options) => {
     }
 
     board = new window.ChessBoard('board1', cfg);
+
+    
 
     return {
         reset: function() {
