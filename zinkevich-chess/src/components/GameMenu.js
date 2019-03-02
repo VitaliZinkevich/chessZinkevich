@@ -20,10 +20,11 @@ class GameMenu extends PureComponent {
         let game = GAME({book: 'book.bin'})
 
         game.reset()
-        game.setTime(1, 0)
-        game.setSkillLevel(20)
-        game.setPlayerColor('black')
-        game.setDisplayScore(false)
+        game.setTime(this.props.time, this.props.increment)
+        game.setSkillLevel(this.props.stockfishLevel)
+        game.setPlayerColor(this.props.color)
+        
+        game.setDisplayScore(this.props.displayScore)
         game.start()
         
     }
@@ -37,7 +38,7 @@ class GameMenu extends PureComponent {
   render() {
     //  console.log(window)
   
-        let gameType=['Man vs Comp', 'Comp vs Comp','Man vs Man' ]
+        let gameType=['Man vs Comp' ]
 
         let gameTypeView = gameType.map ((el)=>{return <button 
             disabled={this.props.gameStatus === false ? false : true}

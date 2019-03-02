@@ -64,7 +64,7 @@ class Score extends PureComponent {
     
     return (
     <div className={this.props.gameStatus === false ? 'd-none' : 'd-flex'}>
-    <div>  
+    <div className={this.props.display === true ? '': 'd-none'}>  
       <canvas ref='canvas' width="50" height="600"></canvas>
     </div>
       
@@ -88,10 +88,11 @@ class Score extends PureComponent {
 
 let mapStateToProps = (state) => {
   return {
+  display : state.gameOpt.displayScore,
+
   score: state.gameStatus.score,
   pgn: state.gameStatus.gamePGN,
   won: state.gameStatus.gameWon,
-
   gameStatus: state.gameStatus.gameStatus,
   }
 }
